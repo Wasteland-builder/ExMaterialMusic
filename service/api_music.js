@@ -6,3 +6,8 @@ export function getBanners() {
     })
 }
 
+export function getRankings(idx) {
+    return emRequest.get('/top/list', {
+        idx
+    })
+}
