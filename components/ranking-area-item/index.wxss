@@ -1,0 +1,67 @@
+/* components/top-list-item/index.wxss */
+.item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+    border-radius: 12rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    width: 355px;
+  }
+  
+  .content {
+    padding: 24rpx;
+    flex: 1;
+    /* min-width: 0; */
+    overflow: hidden;
+  }
+  
+  .content-title {
+    font-size: 34rpx;
+  }
+  
+  .content-list {
+    font-size: 24rpx;
+    width: 100%;
+    margin-top: 6rpx;
+  }
+  
+  .content-list-item {
+    color: #333;
+    margin-top: 6rpx;
+    width: 100%;
+  
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-emphasis: none;
+  }
+  
+  .content-list-item .singer {
+    color: #999;
+  }
+  
+  .album {
+    position: relative;
+    width: 220rpx;
+    display: flex;
+  }
+  
+  .album .image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .album .play-counter {
+    position: absolute;
+    right: 0;
+    bottom: 0rpx;
+    color: #fff;
+    font-size: 22rpx;
+    border-radius: 12rpx;
+    padding: 6rpx 10rpx;
+    background: rgba(0,0,0,.5);
+  }
+  

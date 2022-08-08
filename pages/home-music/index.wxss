@@ -2,14 +2,11 @@
 page {
     padding: 0 20rpx;
 }
-.van-search__content {
-    background-color: #fff !important;
-}
 
-.van-search {
-    padding: 10px 0 !important;
-}
 
+
+/* 轮播图样式 */
+/* 手机系统webview */
 .swiper {
     border-radius: 10rpx;
     overflow: hidden;
@@ -22,5 +19,4 @@ page {
 
 .swiper-item .swiper-image {
     width: 100%;
-
 }

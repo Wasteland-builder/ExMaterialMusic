@@ -3,3 +3,11 @@ page {
     box-sizing: border-box;
     background-color: #fafafa;
 }
+
+.van-search {
+    padding: 10px 0 !important;
+}
+
+.van-search__content {
+    background-color: #fff !important;
+}
