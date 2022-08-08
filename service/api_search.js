@@ -6,7 +6,13 @@ export function getSearchHot() {
 
 export function getSearchSuggest(keywords) {
     return emRequest.get("/search/suggest", {
-      keywords,
-      type: "mobile"
+        keywords,
+        type: "mobile"
     })
-  }
+}
+
+export function getSearchResult(keywords) {
+    return emRequest.get("/search", {
+        keywords
+    })
+}

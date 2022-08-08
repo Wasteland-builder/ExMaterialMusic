@@ -108,7 +108,6 @@ Page({
     getRankingHandler: function (idx) {
         return (res) => {
             if (Object.keys(res).length === 0) return
-            console.log("idx:", idx)
             const name = res.name
             const coverImgUrl = res.coverImgUrl
             const playCount = res.playCount
@@ -126,7 +125,6 @@ Page({
             this.setData({
                 rankings: newRankings
             })
-            console.log(this.data.rankings)
         }
     },
 })
