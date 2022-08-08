@@ -1,1 +1,16 @@
 /* pages/home-music/index.wxss */
+.van-search__content {
+    background-color: #fff !important;
+}
+
+.swiper {
+
+}
+
+.swiper-item {
+    display: flex;
+}
+
+.swiper-item .swiper-image {
+    width: 100%;
+}

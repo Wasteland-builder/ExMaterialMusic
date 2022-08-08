@@ -1,0 +1,23 @@
+{
+  "name": "exmaterialmusic",
+  "version": "1.0.0",
+  "description": "一个用原生技术开发的音乐小程序",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wasteland-builder/ExMaterialMusic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wasteland-builder/ExMaterialMusic/issues"
+  },
+  "homepage": "https://github.com/Wasteland-builder/ExMaterialMusic#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.10.4"
+  }
+}
