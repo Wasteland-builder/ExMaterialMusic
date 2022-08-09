@@ -1,0 +1,17 @@
+<!--baseui/nav-bar/index.wxml-->
+<view class="nav">
+  <view style="height: {{statusBarHeight}}px;"></view>
+  <view class="nav-bar" style="height: {{navBarHeight}}px;">
+    <view class="left">
+      <view class="left-slot"><slot name="left"></slot></view>
+      <view class="left-arrow">
+        <image class="icon" mode="widthFix" src="/assets/images/icons/arrow-left.png"></image>
+      </view>
+    </view>
+    <view class="center">
+      <view class="center-slot"><slot name="title"></slot></view>
+      <view class="center-title">{{title}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</view>

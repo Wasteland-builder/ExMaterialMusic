@@ -1,2 +1,47 @@
 <!--pages/music-player/index.wxml-->
-<text>pages/music-player/index.wxml</text>
+<!-- 1.背景 -->
+<image class="bg-image" mode="aspectFill" src="{{currentSong.al.picUrl}}"></image>
+<view class="bg-cover"></view>
+
+<!-- 2.导航 -->
+<nav-bar>
+  <view slot="title" class="tab">
+    <view class="{{currentPage === 0 ? 'active': ''}}">歌曲</view>
+    <view class="divider">|</view>
+    <view class="{{currentPage === 1 ? 'active': ''}}">歌词</view>
+  </view>
+</nav-bar>
+
+<!-- 3.内容 -->
+<swiper class="content" 
+        style="height: {{contentHeight}}px;"
+        bindchange="handleSwiperChange">
+  <swiper-item class="music">
+    <view class="album">
+      <image class="image" mode="aspectFill" src="https://p1.music.126.net/aG5zqxkBRfLiV7A8W0iwgA==/109951166702962263.jpg"></image>
+    </view>
+    <view class="info">
+      <view class="title">孤勇者</view>
+      <view class="subtitle">
+        <view class="singer">孤勇者</view>
+        <view class="alias">专辑:《英雄联盟》</view>
+      </view>
+    </view>
+    <view class="lyric">我是歌词, 哈哈哈</view>
+    <view class="progress">
+      <slider class="slider" block-size="{{12}}"></slider>
+      <view class="time">
+        <view class="current">01:22</view>
+        <view class="duration">04:33</view>
+      </view>
+    </view>
+    <view class="operation">
+      <image class="btn btn-mode" src="/assets/images/player/play_order.png"></image>
+      <image class="btn btn-prev" src="/assets/images/player/play_prev.png"></image>
+      <image class="btn btn-pause" src="/assets/images/player/play_pause.png"></image>
+      <image class="btn btn-next" src="/assets/images/player/play_next.png"></image>
+      <image class="btn btn-music" src="/assets/images/player/play_music.png"></image>
+    </view>
+  </swiper-item>
+  <swiper-item class="lyric">2</swiper-item>
+</swiper>

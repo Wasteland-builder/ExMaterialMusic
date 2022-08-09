@@ -12,7 +12,7 @@
 ></van-search>
 
 <!-- 2.热门搜索 -->
-<view class="hot" wx:if="{{!searchValue.length}}">
+<view class="hot" wx:if="{{!searchValue.length && !suggestSongs.length}}">
   <area-header title="热门搜索" showRight="{{false}}"></area-header>
   <view class="list">
     <block wx:for="{{hotKeywords}}" wx:key="first">
