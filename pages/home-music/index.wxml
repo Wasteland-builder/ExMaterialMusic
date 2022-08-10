@@ -6,7 +6,7 @@
 <swiper class="swiper" indicator-dots indicator-color="grey" indicator-active-color="#fff" autoplay circular style="height: {{swiperHeight}}px;">
     <block wx:for="{{banners}}" wx:key="bannerId">
         <swiper-item class="swiper-item">
-            <image class="swiper-image" src="{{item.pic}}" mode="widthFix" bindload="handleSwipperImageLoaded"></image>
+            <image class="swiper-image" src="{{item.pic}}" mode="widthFix" bindload="handleSwiperImageLoaded"></image>
         </swiper-item>
     </block>
 </swiper>

@@ -1,9 +1,5 @@
 // pages/home-music/index.js
-import {
-    rankingStore,
-    rankingMap,
-    playerStore
-} from '../../store/index'
+import { rankingStore, rankingMap, playerStore } from '../../store/index'
 
 import {
     getBanners,
@@ -38,136 +34,115 @@ Page({
         playAnimState: "paused"
     },
 
-    onLoad(options) {
+    onLoad: function (options) {
+        playerStore.dispatch("playMusicWithSongIdAction", { id: 1842025914 })
+    
         // 获取页面数据
         this.getPageData()
-
-        rankingStore.dispatch('getRankingDataAction')
-
-        rankingStore.onState('hotRanking', (res => {
-            if (!res.tracks) return
-            const recommendSongs = res.tracks.slice(0, 6)
-            this.setData({
-                recommendSongs
-            })
-        }))
-        rankingStore.onState("newRanking", this.getRankingHandler(0))
-        rankingStore.onState("hotRanking", this.getRankingHandler(1))
-        rankingStore.onState("upRanking", this.getRankingHandler(3))
-
+    
+        // 发起共享数据的请求
+        rankingStore.dispatch("getRankingDataAction")
+    
         // 从store获取共享的数据
         this.setupPlayerStoreListener()
-    },
-
-    handleSwipperImageLoaded: function () {
-        // 获取图片的宽高（如何获取组件的宽高）
-        throttleQueryRect(".swiper-image").then(res => {
-            const rect = res[0]
-            this.setData({
-                swiperHeight: rect.height
-            })
+      },
+    
+      // 网络请求
+      getPageData: function() {
+        getBanners().then(res => {
+          this.setData({ banners: res.banners })
         })
-    },
-
-    navigateToDetailSongsPage: function (rankingName) {
+    
+        getSongMenu().then(res => {
+          this.setData({ hotSongMenu: res.playlists })
+        })
+    
+        getSongMenu("华语").then(res => {
+          this.setData({ recommendSongMenu: res.playlists })
+        })
+      },
+    
+      // 事件处理
+      handleSearchClick: function() {
         wx.navigateTo({
-            url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
+          url: '/pages/detail-search/index',
         })
-    },
-
-    handleSongItemClick: function (event) {
-        const index = event.currentTarget.dataset.index
-        playerStore.setState("playListSongs", this.data.recommendSongs)
-        playerStore.setState("playListIndex", index)
-    },
-
-    handleMoreClick: function () {
+      },
+    
+      handleSwiperImageLoaded: function() {
+        // 获取图片的高度(如果去获取某一个组件的高度)
+        throttleQueryRect(".swiper-image").then(res => {
+          const rect = res[0]
+          this.setData({ swiperHeight: rect.height })
+        })
+      },
+    
+      handleMoreClick: function() {
         this.navigateToDetailSongsPage("hotRanking")
-    },
-
-    handleRankingItemClick: function (event) {
+      },
+    
+      handleRankingItemClick: function(event) {
         const idx = event.currentTarget.dataset.idx
         const rankingName = rankingMap[idx]
         this.navigateToDetailSongsPage(rankingName)
-    },
-
-    // 网络请求
-    getPageData: function () {
-        getBanners().then(res => {
-            this.setData({
-                banners: res.banners
-            })
-        })
-
-        getSongMenu().then(res => {
-            this.setData({
-                hotSongMenu: res.playlists
-            })
-        })
-
-        getSongMenu("华语").then(res => {
-            this.setData({
-                recommendSongMenu: res.playlists
-            })
-        })
-    },
-
-    handleSearchClick() {
+      },
+    
+      navigateToDetailSongsPage: function(rankingName) {
         wx.navigateTo({
-            url: '/pages/detail-search/index',
+          url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
         })
-    },
-
-    setupPlayerStoreListener: function () {
+      },
+    
+      handleSongItemClick: function(event) {
+        const index = event.currentTarget.dataset.index
+        playerStore.setState("playListSongs", this.data.recommendSongs)
+        playerStore.setState("playListIndex", index) 
+      },
+    
+      handlePlayBtnClick: function() {
+        playerStore.dispatch("changeMusicPlayStatusAction", !this.data.isPlaying)
+      },
+    
+      // 卸载页面
+      onUnload: function () {
+        // rankingStore.offState("newRanking", this.getNewRankingHandler)
+      },
+    
+      setupPlayerStoreListener: function() {
         // 1.排行榜监听
         rankingStore.onState("hotRanking", (res) => {
-            if (!res.tracks) return
-            const recommendSongs = res.tracks.slice(0, 6)
-            this.setData({
-                recommendSongs
-            })
+          if (!res.tracks) return
+          const recommendSongs = res.tracks.slice(0, 6)
+          this.setData({ recommendSongs })
         })
         rankingStore.onState("newRanking", this.getRankingHandler(0))
-        rankingStore.onState("originRanking", this.getRankingHandler(2))
+        rankingStore.onState("hotRanking", this.getRankingHandler(1))
         rankingStore.onState("upRanking", this.getRankingHandler(3))
-
+    
         // 2.播放器监听
-        playerStore.onStates(["currentSong", "isPlaying"], ({
-            currentSong,
-            isPlaying
-        }) => {
-            if (currentSong) this.setData({
-                currentSong
+        playerStore.onStates(["currentSong", "isPlaying"], ({currentSong, isPlaying}) => {
+          if (currentSong) this.setData({ currentSong })
+          if (isPlaying !== undefined) {
+            this.setData({ 
+              isPlaying, 
+              playAnimState: isPlaying ? "running": "paused" 
             })
-            if (isPlaying !== undefined) {
-                this.setData({
-                    isPlaying,
-                    playAnimState: isPlaying ? "running" : "paused"
-                })
-            }
+          }
         })
-    },
-
-    getRankingHandler: function (idx) {
+      },
+    
+      getRankingHandler: function(idx) {
         return (res) => {
-            if (Object.keys(res).length === 0) return
-            const name = res.name
-            const coverImgUrl = res.coverImgUrl
-            const playCount = res.playCount
-            const songList = res.tracks.slice(0, 3)
-            const rankingObj = {
-                name,
-                coverImgUrl,
-                playCount,
-                songList
-            }
-            const newRankings = {
-                ...this.data.rankings,
-                [idx]: rankingObj
-            }
-            this.setData({
-                rankings: newRankings
-            })
+          if (Object.keys(res).length === 0) return
+          const name = res.name
+          const coverImgUrl = res.coverImgUrl
+          const playCount = res.playCount
+          const songList = res.tracks.slice(0, 3)
+          const rankingObj = {name, coverImgUrl, playCount, songList}
+          const newRankings = { ...this.data.rankings, [idx]: rankingObj}
+          this.setData({ 
+            rankings: newRankings
+          })
         }
-    },
+      }
 })

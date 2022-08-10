@@ -18,6 +18,10 @@ page {
   .swiper-item .swiper-image {
     width: 100%;
   }
+
+  .ranking {
+      padding-bottom: 44px;
+  }
   
   /* 播放工具栏 */
   .play-bar {
