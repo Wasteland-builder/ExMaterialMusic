@@ -25,12 +25,13 @@ Component({
   methods: {
     handleSongItemClick: function() {
       const id = this.properties.item.id
-      // 页面调整
+      // 1.页面跳转
       wx.navigateTo({
         url: '/pages/music-player/index?id=' + id,
       })
-      // 对歌曲的数据请求和其他操作
+      // 2.对歌曲的数据请求和其他操作
       playerStore.dispatch("playMusicWithSongIdAction", { id })
+      // 3.获取到播放列表/当前歌曲的索引
     }
   }
 })

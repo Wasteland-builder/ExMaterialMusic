@@ -38,6 +38,12 @@ Page({
         }
     },
 
+    handleSongItemClick: function(event) {
+        const index = event.currentTarget.dataset.index
+        playerStore.setState("playListSongs", this.data.songInfo.tracks)
+        playerStore.setState("playListIndex", index)
+      },
+
     getRankingDataHandler: function (res) {
         this.setData({
             songInfo: res
