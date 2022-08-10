@@ -26,7 +26,7 @@
 <song-menu-area title="推荐歌单" songMenu="{{recommendSongMenu}}" wx:if="{{recommendSongMenu.length > 0}}"/>
 
 <!-- 5-巅峰榜 -->
-<view class="ranking" wx:if="{{hotSongMenu.length > 0}}">
+<view class="ranking" wx:if="{{recommendSongs.length > 0}}">
   <area-header title="巅峰榜" showRight="{{false}}"></area-header>
   <view class="ranking-list">
     <block wx:for="{{rankings}}" wx:key="name">

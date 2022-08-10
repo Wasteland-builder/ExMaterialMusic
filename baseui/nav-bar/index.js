@@ -2,21 +2,25 @@
 const globalData = getApp().globalData
 
 Component({
-  options: {
-    multipleSlots: true
-  },
+    options: {
+        multipleSlots: true
+    },
 
-  properties: {
-    title: {
-      type: String,
-      value: "默认标题"
+    properties: {
+        title: {
+            type: String,
+            value: "默认标题"
+        }
+    },
+    data: {
+        statusBarHeight: globalData.statusBarHeight,
+        navBarHeight: globalData.navBarHeight
+    },
+    methods: {
+        backLastPage: function () {
+            wx.navigateBack({
+                delta: 1
+            })
+        }
     }
-  },
-  data: {
-    statusBarHeight: globalData.statusBarHeight,
-    navBarHeight: globalData.navBarHeight
-  },
-  methods: {
-
-  }
 })

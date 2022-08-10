@@ -4,7 +4,7 @@
   <view class="nav-bar" style="height: {{navBarHeight}}px;">
     <view class="left">
       <view class="left-slot"><slot name="left"></slot></view>
-      <view class="left-arrow">
+      <view class="left-arrow" bindtap="backLastPage">
         <image class="icon" mode="widthFix" src="/assets/images/icons/arrow-left.png"></image>
       </view>
     </view>
