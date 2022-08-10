@@ -9,37 +9,9 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "",
-                    "pathName": "pages/home-video/index",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
                     "name": "detail-video",
                     "pathName": "pages/detail-video/index",
                     "query": "id=14550345",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "home-music",
-                    "pathName": "pages/home-music/index",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "search-detail",
-                    "pathName": "pages/detail-search/index",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "music-player",
-                    "pathName": "pages/music-player/index",
-                    "query": "id=1824045033",
                     "launchMode": "default",
                     "scene": null
                 }

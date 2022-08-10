@@ -17,10 +17,8 @@ Component({
         navBarHeight: globalData.navBarHeight
     },
     methods: {
-        backLastPage: function () {
-            wx.navigateBack({
-                delta: 1
-            })
+        handleLeftClick: function () {
+            this.triggerEvent('click')
         }
     }
 })

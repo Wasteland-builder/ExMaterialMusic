@@ -79,7 +79,7 @@ page {
     align-items: center;
     justify-content: center;
     flex: 1;
-    font-size: 28rpx;
+    font-size: 30rpx;
     color: rgb(30, 205, 150);
   }
   
@@ -129,3 +129,32 @@ page {
     height: 130rpx;
   }
   
+/* 歌词分页的样式 */
+.lyric-list {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+  
+  .lyric-list .item {
+    height: 35px;
+    line-height: 35px;
+    font-size: 28rpx;
+    text-align: center;
+    color: #989898;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .lyric-list .item.active {
+    color: #26ce8a;
+    font-size: 36rpx;
+  }
