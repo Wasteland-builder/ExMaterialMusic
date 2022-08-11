@@ -14,6 +14,20 @@
                     "query": "id=14550345",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "home-profile",
+                    "pathName": "pages/home-profile/index",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "video",
+                    "pathName": "packageDetail/pages/detail-video/index",
+                    "query": "id=14551734",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

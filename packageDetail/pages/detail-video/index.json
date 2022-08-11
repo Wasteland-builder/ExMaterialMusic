@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "area-header": "/components/area-header/index"
+    }
+}

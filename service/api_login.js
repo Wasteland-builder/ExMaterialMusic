@@ -20,11 +20,13 @@ export function codeToToken(code) {
   return emLoginRequest.post("/login", { code })
 }
 
-export function checkToken(token) {
-  return emLoginRequest.post("/auth", {}, {
-    token
-  })
+export function checkToken() {
+  return emLoginRequest.post("/auth", {}, true)
 }
+
+export function postFavorRequest(id) {
+    return emLoginRequest.post("/api/favor", { id }, true)
+  }
 
 export function checkSession() {
   return new Promise((resolve) => {
@@ -38,3 +40,17 @@ export function checkSession() {
     })
   })
 }
+
+export function getUserInfo() {
+    return new Promise((resolve, reject) => {
+      wx.getUserProfile({
+        desc: '你好啊,李银河',
+        success: (res) => {
+          resolve(res)
+        },
+        fail: (err) => {
+          reject(err)
+        }
+      })
+    })
+  }

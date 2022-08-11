@@ -31,7 +31,7 @@ Component({
       const id = this.properties.item.id
       // 1.页面跳转
       wx.navigateTo({
-        url: '/pages/music-player/index?id=' + id,
+        url: '/packagePlayer/pages/music-player/index?id=' + id,
       })
 
       // 2.播放歌曲

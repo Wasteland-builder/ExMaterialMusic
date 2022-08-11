@@ -1,0 +1,33 @@
+<!--pages/detail-video/index.wxml-->
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<video class="video" src="{{mvURLInfo.url}}" autoplay loop referrer-policy="origin"></video>
+
+<view class="content">
+    <view class="name">{{mvDetail.name}}</view>
+    <view class="author">
+        <view class="playCount">{{mvDetail.artistName}}</view>
+        -
+        <view class="desc">{{mvDetail.desc}}</view>
+    </view>
+    <view class="detail">
+        <view class="playCount">{{format.formatCount(mvDetail.playCount)}}次播放</view>
+        -
+        <view class="date">{{mvDetail.publishTime}}</view>
+    </view>
+</view>
+
+<view class="related">
+    <area-header title="推荐视频" showRight="{{false}}"></area-header>
+    <block wx:for="{{relatedVideos}}" wx:key="*this">
+        <view class="flexed">
+            <view class="left">
+                <image src="{{item.coverUrl}}" class="image" mode="widthFix"></image>
+                <view class="count">{{format.formatCount(item.playTime)}}</view>
+            </view>
+            <view class="right">
+                <view class="title">{{item.title}}</view>
+                <view class="creator">{{item.creator[0].userName}}</view>
+            </view>
+        </view>
+    </block>
+</view>

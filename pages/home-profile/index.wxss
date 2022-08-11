@@ -1,0 +1,4 @@
+/* pages/home-profile/index.wxss */
+page {
+    text-align: center;
+}

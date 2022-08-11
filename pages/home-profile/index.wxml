@@ -1,0 +1,2 @@
+<!--pages/home-profile/index.wxml-->
+<button open-type="getUserInfo" bindtap="handleGetUser">获取用户信息</button>
