@@ -2,11 +2,13 @@ import { HYEventStore } from 'hy-event-store'
 import { getSongDetail, getSongLyric } from '../service/api_player'
 import { parseLyric } from '../utils/parse-lyric'
 
-const audioContext = wx.createInnerAudioContext()
+// const audioContext = wx.createInnerAudioContext() // audioContext
+const audioContext = wx.getBackgroundAudioManager()
 
 const playerStore = new HYEventStore({
   state: {
     isFirstPlay: true,
+    isStoping: false,
 
     id: 0,
     currentSong: {},
@@ -45,6 +47,7 @@ const playerStore = new HYEventStore({
       getSongDetail(id).then(res => {
         ctx.currentSong = res.songs[0]
         ctx.durationTime = res.songs[0].dt
+        audioContext.title = res.songs[0].name
       })
       // 请求歌词数据
       getSongLyric(id).then(res => {
@@ -56,6 +59,7 @@ const playerStore = new HYEventStore({
       // 2.播放对应id的歌曲
       audioContext.stop()
       audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+      audioContext.title = id
       audioContext.autoplay = true
 
       // 3.监听audioContext一些事件
@@ -102,11 +106,33 @@ const playerStore = new HYEventStore({
       audioContext.onEnded(() => {
         this.dispatch("changeNewMusicAction")
       })
+
+      // 4.监听音乐暂停/播放/停止
+      // 播放状态
+      audioContext.onPlay(() => {
+        ctx.isPlaying = true
+      })
+      // 暂停状态
+      audioContext.onPause(() => {
+        ctx.isPlaying = false
+      })
+      audioContext.onStop(() => {
+        ctx.isPlaying = false
+        ctx.isStoping = true
+      })
     },
 
     changeMusicPlayStatusAction(ctx, isPlaying = true) {
       ctx.isPlaying = isPlaying
+      if (ctx.isPlaying && ctx.isStoping) {
+        audioContext.src = `https://music.163.com/song/media/outer/url?id=${ctx.id}.mp3`
+        audioContext.title = currentSong.name
+      }
       ctx.isPlaying ? audioContext.play(): audioContext.pause()
+      if (ctx.isStoping) {
+        audioContext.seek(ctx.currentTime)
+        ctx.isStoping = false
+      }
     },
 
     changeNewMusicAction(ctx, isNext = true) {

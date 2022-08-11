@@ -18,12 +18,12 @@ page {
   .swiper-item .swiper-image {
     width: 100%;
   }
-
-  .ranking {
-      padding-bottom: 44px;
-  }
   
   /* 播放工具栏 */
+  .play-bar-placeholder {
+      height: 44px;
+  }
+  
   .play-bar {
     display: flex;
     justify-content: space-between;
